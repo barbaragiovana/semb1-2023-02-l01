@@ -1,8 +1,15 @@
 # Questionário Sistemas Embarcados I
 
 ## 1. Explique brevemente o que é compilação cruzada (***cross-compiling***) e para que ela serve.
+- Cross-compiling é um processo no qual você compila um programa em um sistema diferente daquele em que será executado. Como estamos realizando nessa matéria utilizando o linux para poder efetuar a compilação da Arquiterura ARM.
 
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
+- Um código de inicialização (Startup) é um código que é executado antes do inicio da execução do progama principal (main), sua finalidade é preparar o ambiente de execução do programa principal, no nosso caso o codigo startup serve para:
+•	declaração e inicialização do Stack;
+•	declaração e inicialização da Tabela de Vetores de Interrupção;
+•	código do Reset Handler;
+•	outros códigos Exception Handlers.
+- O codigo de inicialização é crucial em sistemas embarcados onde é necessário um controle preciso sobre o ambiente de execução desde o início.
 
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
