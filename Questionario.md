@@ -5,15 +5,16 @@
 
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
 - Um código de inicialização (Startup) é um código que é executado antes do inicio da execução do progama principal (main), sua finalidade é preparar o ambiente de execução do programa principal, no nosso caso o codigo startup serve para:
-•	declaração e inicialização do Stack;
-•	declaração e inicialização da Tabela de Vetores de Interrupção;
-•	código do Reset Handler;
-•	outros códigos Exception Handlers.
+•*	declaração e inicialização do Stack;
+•*	declaração e inicialização da Tabela de Vetores de Interrupção;
+•*	código do Reset Handler;
+•*	outros códigos Exception Handlers.
 - O codigo de inicialização é crucial em sistemas embarcados onde é necessário um controle preciso sobre o ambiente de execução desde o início.
 
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
+- O arquivo Makefile é um arquivo de texto, composto por instruções criadas pelo programador sobre como compilar cada parte do codigo-fonte, quais arquivos dependem de outros arquivos e como produzir os executaveis finais. A sua principal finalidade é automatizar o processo de compilação.
 
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
 
