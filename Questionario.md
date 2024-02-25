@@ -28,7 +28,7 @@
 Esses passos garantem que apenas os arquivos necessários sejam compilados e que o processo de compilação seja executado de forma eficiente e automatizada.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
 alvo: dependências
-    comandos
+(tab) comandos
  - alvo: é o nome do alvo que você deseja criar
  - dependências: são os arquivos que o alvo depende
  - comandos: são os comandos que o make deve executar para construir o alvo.
