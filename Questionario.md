@@ -17,12 +17,32 @@
 - O arquivo Makefile é um arquivo de texto, composto por instruções criadas pelo programador sobre como compilar cada parte do codigo-fonte, quais arquivos dependem de outros arquivos e como produzir os executaveis finais. A sua principal finalidade é automatizar o processo de compilação.
 
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
-
+- O processo realizado pelo make para compilar um programa segue mais ou menos os seguintes passos:
+- Análise do Makefile
+- Determinação das dependências
+- Execução das regras
+- Verificação das datas de modificação
+- Execução dos comandos de compilação
+- Geração dos arquivos alvo
+- Finalização
+- Esses passos garantem que apenas os arquivos necessários sejam compilados e que o processo de compilação seja executado de forma eficiente e automatizada.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
+alvo: dependências
+    comandos
+ - alvo: é o nome do alvo que você deseja criar
+ - dependências: são os arquivos que o alvo depende
+ - comandos: são os comandos que o make deve executar para construir o alvo.
 
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
-
+- As dependencias são definidas logo após o nome do target, separadas por espaços. Essas dependências indicam os arquivos ou outros targets que devem ser construídos antes que o target em questão possa ser construído. As dependências são usadas pelo make para determinar se o target precisa ser reconstruído e, em caso afirmativo, em qual ordem.
+-exemplo:
+    programa: arquivo1.c arquivo2.c
+         gcc -o programa arquivo1.c arquivo2.c
+  
 #### (e) O que são as regras do **Makefile**, qual a diferença entre regras implícitas e explícitas?
+As regras em um arquivo Makefile são instruções que o make segue para construir um alvo específico. Cada regra consiste em um alvo, suas dependências e os comandos necessários para construir o alvo a partir das dependências.
+regra explícita: diz quando e como refazer um ou mais aquivos, chamados de alvos da regra (rules's targets). Ela lista os arquivos dos quais os alvos (targets) dependem, chamados de pré-requisitos do alvo. Também pode fornecer instruções ou uma receita para criar ou atualizar os alvos.
+regra implícita: diz quando e como refazer uma classe de arquivos com base em seus nomes. Ele descreve como um alvo pode depender de um arquivo com um nome semelhante ao alvo e fornece uma receita para criar ou atualizar este alvo.
 
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
