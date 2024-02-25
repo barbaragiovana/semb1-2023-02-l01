@@ -47,12 +47,82 @@ As regras em um arquivo Makefile são instruções que o make segue para constru
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
 ### (a) Explique o conjunto de instruções ***Thumb*** e suas principais vantagens na arquitetura ARM. Como o conjunto de instruções ***Thumb*** opera em conjunto com o conjunto de instruções ARM?
+O conjunto de instruções Thumb é um conjunto de instruções de 16 bits usado em processadores ARM. Foi introduzido em 1994 com o objetivo de reduzir o tamanho do código e melhorar o desempenho em dispositivos embarcados com memória limitada.
+Vantagens de usar o conjunto de instruções Thumb:
+- Código menor: O código Thumb ocupa menos espaço na memória, o que pode ser importante para dispositivos embarcados com memória limitada.
+- Maior desempenho: O código Thumb pode ser executado mais rapidamente do que o código ARM de 32 bits em alguns casos.
+- Flexibilidade: Os programadores podem usar os dois conjuntos de instruções no mesmo código, o que oferece flexibilidade e otimização.
+o conjunto de instruções Thumb opera em conjunto com o conjunto de instruções ARM, permitindo que os processadores ARM alternem dinamicamente entre os modos Thumb (para eficiência de código e economia de energia) e ARM (para alto desempenho) conforme necessário para diferentes aplicativos e cenários de uso.
 
 ### (b) Explique as diferenças entre as arquiteturas ***ARM Load/Store*** e ***Register/Register***.
 
+Arquitetura Load/Store:
+- Na arquitetura Load/Store, apenas instruções de carga (load) e armazenamento (store) podem acessar a memória.
+- As instruções de manipulação de dados, como adição e subtração, operam apenas em registradores.
+- Para acessar dados da memória, primeiro é necessário carregar os dados para um registrador usando uma instrução de carga (load).
+- Depois de manipular os dados nos registradores, eles podem ser armazenados de volta na memória usando uma instrução de armazenamento (store).
+
+Arquitetura Register/Register:
+- Na arquitetura Register/Register, as operações de manipulação de dados podem ser realizadas diretamente entre registradores, sem a necessidade de acessar a memória.
+- Registradores são usados tanto para operandos de entrada quanto de saída em operações aritméticas e lógicas.
+- As operações de carga/armazenamento da memória são menos comuns e geralmente são usadas apenas para entrada e saída de dados do programa.
+  
 ### (c) Os processadores **ARM Cortex-M** oferecem diversos recursos que podem ser explorados por sistemas baseados em **RTOS** (***Real Time Operating Systems***). Por exemplo, a separação da execução do código em níveis de acesso e diferentes modos de operação. Explique detalhadamente como funciona os níveis de acesso de execução de código e os modos de operação nos processadores **ARM Cortex-M**.
 
+Os níveis de acesso de execução de código em processadores ARM Cortex-M referem-se à permissão de acesso para diferentes regiões de memória onde o código pode ser executado. Esses níveis são essenciais para garantir a segurança, a integridade e a eficiência do sistema. Existem principalmente dois tipos de níveis de acesso de execução de código em sistemas Cortex-M:
+
+Execute-in-Place (XiP):
+
+No modo Execute-in-Place (XiP), o código é executado diretamente da memória onde está armazenado, geralmente a memória de programa (flash).
+Isso significa que o processador executa instruções diretamente da memória sem precisar carregá-las em outra área da memória.
+A memória de programa geralmente é apenas leitura (ROM), garantindo que o código não seja modificado durante a execução.
+Esse modo é comumente usado em sistemas embarcados, onde a memória flash é utilizada para armazenar o código do programa.
+
+Execute-in-Place (DiP):
+
+No modo Execute-in-Place (DiP), o código é copiado da memória de programa para a memória de dados (RAM) antes da execução.
+Isso pode ser necessário em casos onde a memória de programa é mais lenta para execução direta ou quando há restrições de segurança que exigem a separação entre memória de programa e memória de dados.
+O código é carregado na memória de dados temporariamente apenas para execução e pode ser descartado após o término da execução.
+
+Funcionamento:
+
+O processador Cortex-M é configurado para acessar as instruções de acordo com o tipo de acesso de execução de código definido para a região de memória onde o código está armazenado. No modo XiP, o processador busca as instruções diretamente da memória de programa.
+No modo DiP, o processador copia as instruções da memória de programa para a memória de dados antes de executá-las.
+A escolha entre XiP e DiP depende das necessidades do sistema, incluindo velocidade de execução, consumo de energia e requisitos de segurança.
+
 ### (d) Explique como os processadores ARM tratam as exceções e as interrupções. Quais são os diferentes tipos de exceção e como elas são priorizadas? Descreva a estratégia de **group priority** e **sub-priority** presente nesse processo.
+
+Os processadores ARM têm um mecanismo dedicado para tratar exceções e interrupções. Quando uma exceção ou interrupção ocorre, o processador suspende a execução do código atual e transfere o controle para um tratador de exceção específico. Esse tratador de exceção é uma rotina de software que lida com o evento específico que ocorreu.
+As exceções e interrupções são priorizadas de acordo com sua importância e urgência. Os processadores ARM geralmente implementam uma estratégia de priorização baseada em níveis de prioridade, que podem incluir "group priority" (prioridade de grupo) e "sub-priority" (subprioridade).
+
+Exceções:
+Synchronous exceptions:
+Reset (0): Reset do processador.
+Undefined instruction (1): Instrução indefinida.
+Software interrupt (2): Interrupção de software.
+Prefetch abort (3): Aborto de pré-busca.
+Data abort (4): Aborto de dados.
+Reserved (5-10): Reservados.
+IRQ (11): Interrupção externa.
+FIQ (12): Interrupção rápida.
+Asynchronous exceptions:
+SError (13): Erro de sistema.
+Interrupt (14): Interrupção.
+Trap (15): Trap.
+
+Interrupções:
+IRQ (11): Interrupção externa.
+FIQ (12): Interrupção rápida.
+
+Group Priority (Prioridade de Grupo):
+
+As exceções e interrupções são agrupadas em diferentes níveis de prioridade.
+Um nível de prioridade mais baixo indica uma prioridade mais alta, ou seja, as exceções e interrupções com menor valor de prioridade são tratadas primeiro.
+
+Sub-Priority (Subprioridade):
+
+Em alguns sistemas, as exceções e interrupções dentro do mesmo grupo de prioridade podem ser priorizadas ainda mais usando subprioridades.
+Isso permite que exceções e interrupções de alta prioridade dentro do mesmo grupo sejam tratadas primeiro.
 
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
 
