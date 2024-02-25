@@ -1,23 +1,23 @@
 # Questionário Sistemas Embarcados I
 
 ## 1. Explique brevemente o que é compilação cruzada (***cross-compiling***) e para que ela serve.
-- Cross-compiling é um processo no qual você compila um programa em um sistema diferente daquele em que será executado. Como estamos realizando nessa matéria utilizando o linux para poder efetuar a compilação da Arquiterura ARM.
+ Cross-compiling é um processo no qual você compila um programa em um sistema diferente daquele em que será executado. Como estamos realizando nessa matéria utilizando o linux para poder efetuar a compilação da Arquiterura ARM.
 
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
-- Um código de inicialização (Startup) é um código que é executado antes do inicio da execução do progama principal (main), sua finalidade é preparar o ambiente de execução do programa principal, no nosso caso o codigo startup serve para:
-•*	declaração e inicialização do Stack;
-•*	declaração e inicialização da Tabela de Vetores de Interrupção;
-•*	código do Reset Handler;
-•*	outros códigos Exception Handlers.
-- O codigo de inicialização é crucial em sistemas embarcados onde é necessário um controle preciso sobre o ambiente de execução desde o início.
+ Um código de inicialização (Startup) é um código que é executado antes do inicio da execução do progama principal (main), sua finalidade é preparar o ambiente de execução do programa principal, no nosso caso o codigo startup serve para:
+•	declaração e inicialização do Stack;
+•	declaração e inicialização da Tabela de Vetores de Interrupção;
+•	código do Reset Handler;
+•	outros códigos Exception Handlers.
+ O codigo de inicialização é crucial em sistemas embarcados onde é necessário um controle preciso sobre o ambiente de execução desde o início.
 
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
-- O arquivo Makefile é um arquivo de texto, composto por instruções criadas pelo programador sobre como compilar cada parte do codigo-fonte, quais arquivos dependem de outros arquivos e como produzir os executaveis finais. A sua principal finalidade é automatizar o processo de compilação.
+ O arquivo Makefile é um arquivo de texto, composto por instruções criadas pelo programador sobre como compilar cada parte do codigo-fonte, quais arquivos dependem de outros arquivos e como produzir os executaveis finais. A sua principal finalidade é automatizar o processo de compilação.
 
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
-- O processo realizado pelo make para compilar um programa segue mais ou menos os seguintes passos:
+ O processo realizado pelo make para compilar um programa segue mais ou menos os seguintes passos:
 - Análise do Makefile
 - Determinação das dependências
 - Execução das regras
@@ -25,7 +25,7 @@
 - Execução dos comandos de compilação
 - Geração dos arquivos alvo
 - Finalização
-- Esses passos garantem que apenas os arquivos necessários sejam compilados e que o processo de compilação seja executado de forma eficiente e automatizada.
+Esses passos garantem que apenas os arquivos necessários sejam compilados e que o processo de compilação seja executado de forma eficiente e automatizada.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
 alvo: dependências
     comandos
@@ -34,15 +34,15 @@ alvo: dependências
  - comandos: são os comandos que o make deve executar para construir o alvo.
 
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
-- As dependencias são definidas logo após o nome do target, separadas por espaços. Essas dependências indicam os arquivos ou outros targets que devem ser construídos antes que o target em questão possa ser construído. As dependências são usadas pelo make para determinar se o target precisa ser reconstruído e, em caso afirmativo, em qual ordem.
--exemplo:
+As dependencias são definidas logo após o nome do target, separadas por espaços. Essas dependências indicam os arquivos ou outros targets que devem ser construídos antes que o target em questão possa ser construído. As dependências são usadas pelo make para determinar se o target precisa ser reconstruído e, em caso afirmativo, em qual ordem.
+
     programa: arquivo1.c arquivo2.c
          gcc -o programa arquivo1.c arquivo2.c
   
 #### (e) O que são as regras do **Makefile**, qual a diferença entre regras implícitas e explícitas?
 As regras em um arquivo Makefile são instruções que o make segue para construir um alvo específico. Cada regra consiste em um alvo, suas dependências e os comandos necessários para construir o alvo a partir das dependências.
-regra explícita: diz quando e como refazer um ou mais aquivos, chamados de alvos da regra (rules's targets). Ela lista os arquivos dos quais os alvos (targets) dependem, chamados de pré-requisitos do alvo. Também pode fornecer instruções ou uma receita para criar ou atualizar os alvos.
-regra implícita: diz quando e como refazer uma classe de arquivos com base em seus nomes. Ele descreve como um alvo pode depender de um arquivo com um nome semelhante ao alvo e fornece uma receita para criar ou atualizar este alvo.
+- regra explícita: diz quando e como refazer um ou mais aquivos, chamados de alvos da regra (rules's targets). Ela lista os arquivos dos quais os alvos (targets) dependem, chamados de pré-requisitos do alvo. Também pode fornecer instruções ou uma receita para criar ou atualizar os alvos.
+- regra implícita: diz quando e como refazer uma classe de arquivos com base em seus nomes. Ele descreve como um alvo pode depender de um arquivo com um nome semelhante ao alvo e fornece uma receita para criar ou atualizar este alvo.
 
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
