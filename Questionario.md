@@ -27,8 +27,10 @@
 - Finalização
 Esses passos garantem que apenas os arquivos necessários sejam compilados e que o processo de compilação seja executado de forma eficiente e automatizada.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
-alvo: dependências
-(tab) comandos
+
+    alvo: dependências
+       comandos
+
  - alvo: é o nome do alvo que você deseja criar
  - dependências: são os arquivos que o alvo depende
  - comandos: são os comandos que o make deve executar para construir o alvo.
@@ -96,23 +98,23 @@ Os processadores ARM têm um mecanismo dedicado para tratar exceções e interru
 As exceções e interrupções são priorizadas de acordo com sua importância e urgência. Os processadores ARM geralmente implementam uma estratégia de priorização baseada em níveis de prioridade, que podem incluir "group priority" (prioridade de grupo) e "sub-priority" (subprioridade).
 
 Exceções:
-Synchronous exceptions:
-Reset (0): Reset do processador.
-Undefined instruction (1): Instrução indefinida.
-Software interrupt (2): Interrupção de software.
-Prefetch abort (3): Aborto de pré-busca.
-Data abort (4): Aborto de dados.
-Reserved (5-10): Reservados.
-IRQ (11): Interrupção externa.
-FIQ (12): Interrupção rápida.
-Asynchronous exceptions:
-SError (13): Erro de sistema.
-Interrupt (14): Interrupção.
-Trap (15): Trap.
+- Synchronous exceptions:
+- Reset (0): Reset do processador.
+- Undefined instruction (1): Instrução indefinida.
+- Software interrupt (2): Interrupção de software.
+- Prefetch abort (3): Aborto de pré-busca.
+- Data abort (4): Aborto de dados.
+- Reserved (5-10): Reservados.
+- IRQ (11): Interrupção externa.
+- FIQ (12): Interrupção rápida.
+- Asynchronous exceptions:
+- SError (13): Erro de sistema.
+- Interrupt (14): Interrupção.
+- Trap (15): Trap.
 
 Interrupções:
-IRQ (11): Interrupção externa.
-FIQ (12): Interrupção rápida.
+- IRQ (11): Interrupção externa.
+- FIQ (12): Interrupção rápida.
 
 Group Priority (Prioridade de Grupo):
 
@@ -126,18 +128,64 @@ Isso permite que exceções e interrupções de alta prioridade dentro do mesmo 
 
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
 
+CPSR (Current Program Status Register):
+
+O CPSR armazena o estado atual do processador enquanto o código está sendo executado no modo de usuário (User Mode) ou no modo privilegiado (Privileged Mode).Ele registra informações como o estado da condição de execução (flags), o modo de operação atual, se a interrupção está habilitada ou desabilitada, entre outras informações de status do processador, ele pode ser acessado e modificado durante a execução do código usando instruções específicas (como instruções de comparação, adição ou subtração), permitindo que o software controle o comportamento do processador, E também é usado para determinar o estado do processador durante a execução normal do código e para realizar operações condicionais com base nas flags de status.
+
+SPSR (Saved Program Status Register):
+
+O SPSR é usado para armazenar temporariamente o estado do processador quando uma exceção ocorre e o controle é transferido para um tratador de exceção.Ele armazena o estado do processador no momento em que a exceção ocorre, permitindo que o tratador de exceção retome a execução do código após lidar com a exceção,Quando uma exceção ocorre, o CPSR atual é copiado para o SPSR correspondente antes que o processador mude para o modo de exceção,isso permite que o tratador de exceção preserve o estado do processador e retome a execução do código original após o tratamento da exceção.Após a conclusão do tratamento de exceção, o conteúdo do SPSR é copiado de volta para o CPSR para restaurar o estado do processador anterior à exceção, isso permite que a execução do programa continue de onde parou, mantendo o estado consistente do processador.
+
 ### (f) Qual a finalidade do **LR** (***Link Register***)?
+
+O registrador LR (Link Register) é usado para armazenar o endereço de retorno de uma sub-rotina ou chamada de função, permitindo que o programa retorne ao ponto de onde a chamada foi feita após a execução da sub-rotina.
 
 ### (g) Qual o propósito do Program Status Register (PSR) nos processadores ARM?
 
+O PSR tem como objetivo principal armazenar informações sobre o estado atual do processador, ele é crucial para controlar o fluxo de execução do programa e para lidar com exceções de forma eficaz.
+
 ### (h) O que é a tabela de vetores de interrupção?
+
+A tabela de vetores de interrupção é uma estrutura de dados usada em sistemas embarcados para direcionar o processador para o código apropriado quando ocorre uma interrupção. Ela mapeia cada tipo de interrupção para o endereço de memória da função que lida com essa interrupção. Quando uma interrupção ocorre, o processador usa essa tabela para encontrar a função correspondente e executá-la. Essa abordagem garante um tratamento eficiente e organizado das interrupções no sistema.
+Em nosso sistema criamos um array e declaramos cada endereço de memória correspondente ao seu papel de acordo com o datasheet da placa, fazemos isso pois caso seja necessario executar a interrupção, isto funcionará de forma adquada no nosso projeto.
 
 ### (i) Qual a finalidade do NVIC (**Nested Vectored Interrupt Controller**) nos microcontroladores ARM e como ele pode ser utilizado em aplicações de tempo real?
 
+O NVIC (Nested Vectored Interrupt Controller) é um componente essencial nos microcontroladores ARM, especialmente na linha Cortex-M, que gerencia interrupções de maneira eficiente e flexível. Sua finalidade é permitir o tratamento de múltiplas interrupções de forma organizada e escalonada, o que é fundamental em aplicações de tempo real, ele oferece recursos como priorização, encadeamento e controle de estado de interrupção, permitindo que os sistemas embarcados atendam às demandas de tempo real de forma confiável.
+
 ### (j) Em modo de execução normal, o Cortex-M pode fazer uma chamada de função usando a instrução **BL**, que muda o **PC** para o endereço de destino e salva o ponto de execução atual no registador **LR**. Ao final da função, é possível recuperar esse contexto usando uma instrução **BX LR**, por exemplo, que atualiza o **PC** para o ponto anterior. No entanto, quando acontece uma interrupção, o **LR** é preenchido com um valor completamente  diferente,  chamado  de  **EXC_RETURN**.  Explique  o  funcionamento  desse  mecanismo  e especifique como o **Cortex-M** consegue fazer o retorno da interrupção. 
+
+O mecanismo de tratamento de interrupções no Cortex-M envolve o uso do registrador LR (Link Register) de maneira especial. Quando uma interrupção ocorre, o Cortex-M automaticamente preserva o contexto da execução atual, incluindo o valor do registrador LR, antes de transferir o controle para o tratador de interrupção. Isso é essencial para garantir que, após o tratamento da interrupção, o programa possa retomar a execução no ponto onde foi interrompido.
+
+O valor especial preenchido no registrador LR durante uma interrupção é chamado de "EXC_RETURN". Ele contém informações específicas sobre o contexto de execução antes da interrupção. O formato do valor EXC_RETURN varia dependendo do tipo de exceção que ocorreu e do estado do processador no momento da interrupção.
+
+Quando o tratador de interrupção está prestes a retornar ao código interrompido, ele usa o valor EXC_RETURN no registrador LR para restaurar o contexto de execução anterior à interrupção. O Cortex-M interpreta o valor EXC_RETURN para determinar como restaurar corretamente o estado do processador e retomar a execução do programa.
+
+Por exemplo, se a interrupção foi tratada enquanto o processador estava em um modo privilegiado (como o modo Handler), o valor EXC_RETURN informará ao Cortex-M para retornar ao modo anteriormente usado antes da interrupção. Além disso, o valor EXC_RETURN pode conter informações sobre se o tratamento da interrupção foi realizado com sucesso, se houve uma troca de pilha, etc.
+
+Em resumo, o valor EXC_RETURN preenchido no registrador LR durante uma interrupção fornece informações essenciais para que o Cortex-M possa restaurar corretamente o contexto de execução anterior à interrupção e retomar a execução do programa no ponto onde foi interrompido. Isso é uma parte crucial do mecanismo de tratamento de interrupções nos microcontroladores Cortex-M.
 
 ### (k) Qual  a  diferença  no  salvamento  de  contexto,  durante  a  chegada  de  uma  interrupção,  entre  os processadores Cortex-M3 e Cortex M4F (com ponto flutuante)? Descreva em termos de tempo e também de uso da pilha. Explique também o que é ***lazy stack*** e como ele é configurado. 
 
+O salvamento de contexto durante a chegada de uma interrupção nos processadores Cortex-M3 e Cortex-M4F difere principalmente devido à presença de registros de ponto flutuante no Cortex-M4F. Isso afeta tanto o tempo de resposta da interrupção quanto o uso da pilha. Além disso, o conceito de "lazy stack" também é relevante para o gerenciamento eficiente da pilha durante as interrupções.
+
+Cortex-M3:
+
+- Tempo de Resposta: No Cortex-M3, o salvamento de contexto durante uma interrupção é realizado de maneira mais simples, pois não há registros de ponto flutuante a serem preservados.
+- Uso da Pilha: Durante uma interrupção no Cortex-M3, o contexto do processador é salvo na pilha principal. Isso inclui os registradores de propósito geral (incluindo o LR) e os registradores especiais relacionados à interrupção, como o registrador de estado PRIMASK ou BASEPRI, se aplicável.
+- Lazy Stack: No Cortex-M3, não há o conceito de "lazy stack". Isso significa que toda a informação do contexto é imediatamente empilhada na entrada da rotina de tratamento de interrupção.
+
+Cortex-M4F:
+
+- Tempo de Resposta: No Cortex-M4F, o salvamento de contexto pode ser um pouco mais lento devido à necessidade de preservar também os registros de ponto flutuante.
+- Uso da Pilha: Durante uma interrupção no Cortex-M4F, além dos registradores de propósito geral, os registradores de ponto flutuante (se utilizados) também precisam ser preservados. Isso resulta em uma quantidade maior de dados a serem empilhados na pilha.
+- Lazy Stack: No Cortex-M4F, o conceito de "lazy stack" pode ser usado para otimizar o gerenciamento da pilha durante interrupções. Com o lazy stack ativado, apenas os registradores de propósito geral são inicialmente empilhados quando uma interrupção ocorre. Os registradores de ponto flutuante só são salvos na pilha quando são realmente usados pelo tratador de interrupção. Isso reduz a sobrecarga de salvar e restaurar todos os registradores de ponto flutuante a cada interrupção, o que pode melhorar significativamente o tempo de resposta em aplicações que não usam rotineiramente cálculos de ponto flutuante.
+
+Configuração do Lazy Stack:
+
+O lazy stack é configurado através do bit de controle LazyStacking no registrador de configuração de exceções (EXC_RETURN).Quando ativado, o processador só empilhará os registradores de propósito geral automaticamente quando uma exceção ocorrer, os registradores de ponto flutuante serão salvos e restaurados conforme necessário pelo tratador de interrupção. Essa configuração pode ser útil em aplicações que visam minimizar o tempo de resposta de interrupções, especialmente em cenários onde os registros de ponto flutuante não são frequentemente utilizados.
+
+A principal diferença no salvamento de contexto durante a chegada de uma interrupção entre os processadores Cortex-M3 e Cortex-M4F está relacionada à presença de registros de ponto flutuante no Cortex-M4F. Isso afeta tanto o tempo de resposta da interrupção quanto o uso da pilha. Além disso, o conceito de "lazy stack" pode ser utilizado no Cortex-M4F para otimizar o gerenciamento da pilha durante as interrupções, reduzindo assim a sobrecarga e melhorando o tempo de resposta.
 
 ## Referências
 
