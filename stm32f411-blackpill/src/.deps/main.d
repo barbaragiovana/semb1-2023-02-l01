@@ -1,1 +1,1 @@
-main.o: main.c config.h
+build/main.o: main.c
