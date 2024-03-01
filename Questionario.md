@@ -61,6 +61,8 @@ Os dois program status register se diferem onde o Current é sobre o status atua
 Sua finalidade principal é permitir que a sub-rotina retorne ao ponto de execução correto após sua conclusão. Ele é usado principalmente quando há uma interrupção, onde parte do contexto atual é salvo nele.
 
 ### (g) Qual o propósito do Program Status Register (PSR) nos processadores ARM?
+Ele armazena estado atual do processador durante a execução de instruções, e ele é dividido em 3 registros: application, execution e interrupt.
+Ele indica o modo de operação, estado de interrupção, estado de execuçaõ condicional e flag de status.
 
 ### (h) O que é a tabela de vetores de interrupção?
 
