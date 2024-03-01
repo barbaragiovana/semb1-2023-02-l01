@@ -37,6 +37,9 @@ Thumb é uma extensão do conjunto de instruções do processador ARM. Ele foi o
 	Eles trabalham em “modo misto”, isto significa que os processadores ARM podem executar tanto instruções ARM quanto Thumb.
 
 ### (b) Explique as diferenças entre as arquiteturas ***ARM Load/Store*** e ***Register/Register***.
+Arquitetura Load/Store - Operações de carga e armazenamento são realizadas, movendo dados entre a memória e os registradores do processador. Requer instruções separadas para acessar a memória e manipular os dados.
+
+	Arquitetura Register/Register - Todas as operações são realizadas diretamente entre registradores do processador, sem necessidade de acessar  memória diretamente. A memória é acessada  apenas quando é necessário carregar ou armazenar dados. Permite operações diretas entre registradores, reduzindo a necessidade de acesso à memória e potencialmente melhorando o desempenho do código.
 
 ### (c) Os processadores **ARM Cortex-M** oferecem diversos recursos que podem ser explorados por sistemas baseados em **RTOS** (***Real Time Operating Systems***). Por exemplo, a separação da execução do código em níveis de acesso e diferentes modos de operação. Explique detalhadamente como funciona os níveis de acesso de execução de código e os modos de operação nos processadores **ARM Cortex-M**.
 
