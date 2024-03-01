@@ -13,7 +13,8 @@ O Makefile é um arquivo que contém instruções para utilização de programas
 O utilitário make usa o arquivo (Makefile) para determinar quais arquivos precisam ser compilados e como compilá-los. Ele verifica quais arquivos precisam ser compilados, verifica a data de modificação dos arquivos e determina os arquivos que precisam ser compilados novamente, executa os comandos de compilação especificados no Makefile e exibe mensagens de erro caso ocorrer algum problema de compilação.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
 targets: prerequisites
-	recipe
+	
+ recipe
 
 Na prática, o target é o arquivo objeto que desejamos criar, e o prerequisites é o arquivo que dependemos para criar nosso arquivo objeto. Já o recipe é exatamente a linha de comando que deve ser utilizado para gerar o arquivo.
 
