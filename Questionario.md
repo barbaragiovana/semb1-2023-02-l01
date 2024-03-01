@@ -41,6 +41,8 @@ Arquitetura Load/Store - Operações de carga e armazenamento são realizadas, m
 Arquitetura Register/Register - Todas as operações são realizadas diretamente entre registradores do processador, sem necessidade de acessar  memória diretamente. A memória é acessada  apenas quando é necessário carregar ou armazenar dados. Permite operações diretas entre registradores, reduzindo a necessidade de acesso à memória e potencialmente melhorando o desempenho do código.
 
 ### (c) Os processadores **ARM Cortex-M** oferecem diversos recursos que podem ser explorados por sistemas baseados em **RTOS** (***Real Time Operating Systems***). Por exemplo, a separação da execução do código em níveis de acesso e diferentes modos de operação. Explique detalhadamente como funciona os níveis de acesso de execução de código e os modos de operação nos processadores **ARM Cortex-M**.
+Os níveis de acesso de execução do código podem ser baseados no privilégio que tem de execução. São baseados no Kernel e User mode do RTOs. No primeiro, há acesso a registradores e usamos o Main Stack Pointer, é o acesso privilegiado. E há ainda, o modo usuário, que há restrições, é usado o Program Stack Pointer.
+Já sobre os modos de operação, são o Handler Mode e Thread mode. No modo handler, acontece a execução do código, já o Thread mode, é acionado quando ocorre alguma exceção.
 
 ### (d) Explique como os processadores ARM tratam as exceções e as interrupções. Quais são os diferentes tipos de exceção e como elas são priorizadas? Descreva a estratégia de **group priority** e **sub-priority** presente nesse processo.
 
