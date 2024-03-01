@@ -32,6 +32,9 @@ Regra explícita: diz quando e como refazer um ou mais aquivos, chamados de alvo
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
 ### (a) Explique o conjunto de instruções ***Thumb*** e suas principais vantagens na arquitetura ARM. Como o conjunto de instruções ***Thumb*** opera em conjunto com o conjunto de instruções ARM?
+Thumb é uma extensão do conjunto de instruções do processador ARM. Ele foi originalmente desenvolvido para proporcionar um melhor desempenho em termos de consumo de energia e tamanho do código em sistemas embarcados, principalmente em sistemas com restrição de memória.
+	O processador pode executar tanto as instruções Thumb quanto às instruções ARM, pois eles operam em conjunto. Quando o processador está em modo Thumb, ele executa apenas instruções de 16 bits de tamanho fixo, já as instruções do modo ARM são de 32 bits. Isso permite que o processador economize espaço de memória e melhore o seu desempenho em algumas situações, já que para instruções mais complexas ou específicas, é necessário usar as do ARM.
+	Eles trabalham em “modo misto”, isto significa que os processadores ARM podem executar tanto instruções ARM quanto Thumb.
 
 ### (b) Explique as diferenças entre as arquiteturas ***ARM Load/Store*** e ***Register/Register***.
 
