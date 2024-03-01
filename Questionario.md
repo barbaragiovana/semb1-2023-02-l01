@@ -56,7 +56,7 @@ Existem ainda, exceções externas, e elas geralmente são relacionadas a perif�
 Nessa estratégia de group priority e sub-priority , as interrupções são agrupadas em diferentes categorias ou grupos, e dentro de cada grupo, as interrupções são priorizadas com base em uma sub-prioridade. Isso permite uma gestão eficiente de eventos assíncronos, garantindo que as interrupções sejam tratadas de forma ordenada e que as tarefas críticas sejam atendidas prontamente.
 
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
-
+Os dois program status register se diferem onde o Current é sobre o status atual do processador e o saved é usado para salvar dados do CPSR quando ocorre uma exceção. 
 ### (f) Qual a finalidade do **LR** (***Link Register***)?
 
 ### (g) Qual o propósito do Program Status Register (PSR) nos processadores ARM?
