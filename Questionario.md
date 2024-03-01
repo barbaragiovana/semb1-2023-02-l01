@@ -45,6 +45,15 @@ Os níveis de acesso de execução do código podem ser baseados no privilégio 
 Já sobre os modos de operação, são o Handler Mode e Thread mode. No modo handler, acontece a execução do código, já o Thread mode, é acionado quando ocorre alguma exceção.
 
 ### (d) Explique como os processadores ARM tratam as exceções e as interrupções. Quais são os diferentes tipos de exceção e como elas são priorizadas? Descreva a estratégia de **group priority** e **sub-priority** presente nesse processo.
+Existem alguns tipos de exceção, e eles serão citados abaixo:
+
+NMI ( Non-maskable interrupt) : exceção de alta prioridade
+HardFault: exceção decorrente de erro na execução de uma instrução.
+SVCall: exceção causada pela chamada da interrupção do Supervisor Call.
+PendSV & SysTickt : exceção desencadeada pelo software
+Existem ainda, exceções externas, e elas geralmente são relacionadas a periféricos.
+
+Nessa estratégia de group priority e sub-priority , as interrupções são agrupadas em diferentes categorias ou grupos, e dentro de cada grupo, as interrupções são priorizadas com base em uma sub-prioridade. Isso permite uma gestão eficiente de eventos assíncronos, garantindo que as interrupções sejam tratadas de forma ordenada e que as tarefas críticas sejam atendidas prontamente.
 
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
 
