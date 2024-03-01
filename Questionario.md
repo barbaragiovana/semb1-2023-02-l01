@@ -14,8 +14,7 @@ O utilitário make usa o arquivo (Makefile) para determinar quais arquivos preci
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
 targets: prerequisites
 	recipe
-
-	Na prática, o target é o arquivo objeto que desejamos criar, e o prerequisites é o arquivo que dependemos para criar nosso arquivo objeto. Já o recipe é exatamente a linha de comando que deve ser utilizado para gerar o arquivo.
+Na prática, o target é o arquivo objeto que desejamos criar, e o prerequisites é o arquivo que dependemos para criar nosso arquivo objeto. Já o recipe é exatamente a linha de comando que deve ser utilizado para gerar o arquivo.
 
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
 all: startup.o main.o
