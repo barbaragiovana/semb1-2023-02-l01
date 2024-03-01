@@ -8,14 +8,25 @@ Quando um arquivo executável é carregado na memória, existe uma rotina interm
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
-
+O Makefile é um arquivo que contém instruções para utilização de programas e bibliotecas que serão necessárias para execução de um programa em C com os parâmetros que desejamos.
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
-
+O utilitário make usa o arquivo (Makefile) para determinar quais arquivos precisam ser compilados e como compilá-los. Ele verifica quais arquivos precisam ser compilados, verifica a data de modificação dos arquivos e determina os arquivos que precisam ser compilados novamente, executa os comandos de compilação especificados no Makefile e exibe mensagens de erro caso ocorrer algum problema de compilação.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
+targets: prerequisites
+	recipe
+
+	Na prática, o target é o arquivo objeto que desejamos criar, e o prerequisites é o arquivo que dependemos para criar nosso arquivo objeto. Já o recipe é exatamente a linha de comando que deve ser utilizado para gerar o arquivo.
 
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
+all: startup.o main.o
+
+Utilizamos o “all” como um target e colocamos como dependências todos os arquivos objetos que desejamos gerar, que no caso do exemplo acima é o startup.o e main.o. Elas são utilizadas quando queremos executar todos os targets presentes no nosso Makefile.
 
 #### (e) O que são as regras do **Makefile**, qual a diferença entre regras implícitas e explícitas?
+
+Uma regra informa ao make duas coisas: quando um target está desatualizado e como fazer para atualizá-lo.
+Regra implícita: diz quando e como refazer uma classe de arquivos com base em seus nomes. Ele descreve como um alvo pode depender de um arquivo com um nome semelhante ao alvo e fornece uma receita para criar ou atualizar este alvo.
+Regra explícita: diz quando e como refazer um ou mais aquivos, chamados de alvos da regra (rules's targets). Ela lista os arquivos dos quais os alvos (targets) dependem, chamados de pré-requisitos do alvo. Também pode fornecer instruções ou uma receita para criar ou atualizar os alvos.
 
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
