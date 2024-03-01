@@ -1,7 +1,7 @@
 # Questionário Sistemas Embarcados I
 
 ## 1. Explique brevemente o que é compilação cruzada (***cross-compiling***) e para que ela serve.
-
+Cross-compilation é o processo onde utilizamos um computador com determinado sistema operacional para desenvolver softwares para sistemas embarcados. A máquina em que fazemos o desenvolvimento é o HOST e o dispositivo que irá executar o binário é o target. Exemplificando: Desenvolvemos a aplicação em um computador com Sistema Operacional Linux e o dispositivo que executa o binário será o STM32, é usamos o stlink para fazer a comunicação entre os dois.
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
 
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
