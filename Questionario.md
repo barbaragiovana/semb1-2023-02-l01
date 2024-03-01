@@ -68,7 +68,7 @@ Ele indica o modo de operação, estado de interrupção, estado de execuçaõ c
 A tabela de vetores de interrupção é uma lista de endereços de memória onde estão localizadas as rotinas de tratamento de interrupção. Cada entrada na tabela está associada a um número de interrupção específico. Quando ocorre uma interrupção, o processador consulta a tabela de vetores de interrupção para determinar o endereço da rotina de tratamento apropriada.
 
 ### (i) Qual a finalidade do NVIC (**Nested Vectored Interrupt Controller**) nos microcontroladores ARM e como ele pode ser utilizado em aplicações de tempo real?
-
+É um componente usado para tratar interrupções internas ou externas. Ela prioriza as interrupções, e assim auxilia a reduzir a latência das interrupções, NVIC segue a ordem de prioridade.
 ### (j) Em modo de execução normal, o Cortex-M pode fazer uma chamada de função usando a instrução **BL**, que muda o **PC** para o endereço de destino e salva o ponto de execução atual no registador **LR**. Ao final da função, é possível recuperar esse contexto usando uma instrução **BX LR**, por exemplo, que atualiza o **PC** para o ponto anterior. No entanto, quando acontece uma interrupção, o **LR** é preenchido com um valor completamente  diferente,  chamado  de  **EXC_RETURN**.  Explique  o  funcionamento  desse  mecanismo  e especifique como o **Cortex-M** consegue fazer o retorno da interrupção. 
 
 ### (k) Qual  a  diferença  no  salvamento  de  contexto,  durante  a  chegada  de  uma  interrupção,  entre  os processadores Cortex-M3 e Cortex M4F (com ponto flutuante)? Descreva em termos de tempo e também de uso da pilha. Explique também o que é ***lazy stack*** e como ele é configurado. 
