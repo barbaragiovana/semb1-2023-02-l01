@@ -58,6 +58,7 @@ Nessa estratégia de group priority e sub-priority , as interrupções são agru
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
 Os dois program status register se diferem onde o Current é sobre o status atual do processador e o saved é usado para salvar dados do CPSR quando ocorre uma exceção. 
 ### (f) Qual a finalidade do **LR** (***Link Register***)?
+Sua finalidade principal é permitir que a sub-rotina retorne ao ponto de execução correto após sua conclusão. Ele é usado principalmente quando há uma interrupção, onde parte do contexto atual é salvo nele.
 
 ### (g) Qual o propósito do Program Status Register (PSR) nos processadores ARM?
 
